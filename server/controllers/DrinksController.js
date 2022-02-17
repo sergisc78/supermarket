@@ -1,12 +1,13 @@
 const Drinks = require("../models/Drinks");
 
 
+//POST
 exports.createDrink = async (req, res) => {
     try {
 
         let drink;
 
-        //  CREATE DRINK
+        //  CREATE PRODUCT
 
         drink = new Drinks(req.body);
 
@@ -20,6 +21,8 @@ exports.createDrink = async (req, res) => {
     }
 }
 
+
+//GET
 exports.getDrinks = async (req, res) => {
     try {
 
@@ -33,6 +36,7 @@ exports.getDrinks = async (req, res) => {
     }
 }
 
+//UPDATE
 exports.updateDrink = async (req, res) => {
     try {
 
@@ -43,7 +47,7 @@ exports.updateDrink = async (req, res) => {
 
         if (!drink) {
             res.status(404).json({
-                message: 'No drink found'
+                message: 'Product not found'
             });
         }
 
@@ -56,10 +60,53 @@ exports.updateDrink = async (req, res) => {
         // IF DRINK EXISTS, IT WILL BE UPDATED
 
         drink = await Drinks.findByIdAndUpdate({_id:req.params.id},drink,{new:true});
-        res.json(drinkclear)
+        res.json(drink);
 
     } catch (error) {
         console.log(error);
         res.status(500).send("There was an error");
     }
 }
+
+
+//GET DRINK BY ID
+exports.getOneDrink=async(req,res)=>{
+    try {
+        let drink = await Drinks.findById(req.params.id);
+
+        //IF DRINK DOESN'T EXIST
+
+        if (!drink) {
+            res.status(404).json({
+                message: 'Product not found'
+            });
+        }
+        res.json(drink);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("There was an error");
+    }
+}
+
+//DELETE DRINK BY ID
+exports.deleteDrink=async(req,res)=>{
+    try {
+        let drink = await Drinks.findById(req.params.id);
+
+        //IF DRINK DOESN'T EXIST
+
+        if (!drink) {
+            res.status(404).json({
+                message: 'Product not found'
+            });
+        }
+        await Drinks.findByIdAndRemove({_id:req.params.id});
+        res.json({message:'Drink deleted successfully'});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("There was an error");
+    }
+
+}
+

@@ -9,5 +9,7 @@ const drinksController=require('../controllers/DrinksController')
 router.post('/',drinksController.createDrink);
 router.get('/',drinksController.getDrinks);
 router.put('/:id',drinksController.updateDrink);
+router.get('/:id',drinksController.getOneDrink);
+router.delete('/:id',drinksController.deleteDrink);
 
 module.exports=router;

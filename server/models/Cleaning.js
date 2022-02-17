@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-
-const DrinksSchema = mongoose.Schema({
+const CleaningSchema = mongoose.Schema({
     productName: {
         type: String,
         require: true
@@ -18,10 +17,10 @@ const DrinksSchema = mongoose.Schema({
         type: Number,
         require: true
     },
-    dateCreation:{
-        type:Date,
-        default:Date.now()
+    dateCreation: {
+        type: Date,
+        default: Date.now()
     }
 });
 
-module.exports = mongoose.model('drinks', DrinksSchema);
+module.exports = mongoose.model('cleaning', CleaningSchema);
