@@ -54,7 +54,7 @@ exports.updateFood = async (req, res) => {
 
         // IF DRINK EXISTS, IT WILL BE UPDATED
 
-        food = await Food.findByIdAndUpdate({id: req.params.id}, food, {new: true});
+        food = await Food.findByIdAndUpdate({_id: req.params.id}, food, {new: true});
         res.json(food);
 
     } catch (error) {
@@ -97,9 +97,7 @@ exports.deleteFood = async (req, res) => {
 
         }
 
-        await Food.findOneAndRemove({
-            _id: req.params.id
-        });
+        await Food.findOneAndRemove({_id: req.params.id});
         res.json({message: "Food deleted successfuly"});
 
     } catch (error) {

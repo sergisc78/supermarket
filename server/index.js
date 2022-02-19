@@ -15,6 +15,8 @@ app.use(express.json());
 app.use('/api/drinks', require('./routes/drinks'));
 app.use('/api/food', require('./routes/food'));
 app.use('/api/cleaning', require('./routes/cleaningProducts'));
+app.use('/api/register',require('./routes/auth'));
+app.use('/api/login',require('./routes/auth'));
 
 /*
 app.get('/',(req,res)=>{
