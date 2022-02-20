@@ -1,6 +1,7 @@
 const express = require('express');
 const PORT = 3000;
-const connectDB = require('./config/config')
+const connectDB = require('./config/config');
+const User = require('./models/Auth');
 
 
 // CREATE SERVER
@@ -15,8 +16,8 @@ app.use(express.json());
 app.use('/api/drinks', require('./routes/drinks'));
 app.use('/api/food', require('./routes/food'));
 app.use('/api/cleaning', require('./routes/cleaningProducts'));
-app.use('/api/register',require('./routes/auth'));
-app.use('/api/login',require('./routes/auth'));
+app.use('/api/register', require('./routes/auth'));
+app.use('/api/login', require('./routes/auth'));
 
 /*
 app.get('/',(req,res)=>{
