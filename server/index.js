@@ -2,7 +2,7 @@ const express = require('express');
 const PORT = 3000;
 const connectDB = require('./config/config');
 const User = require('./models/Auth');
-
+const cors=require('cors');
 
 // CREATE SERVER
 const app = express();
@@ -12,6 +12,7 @@ const app = express();
 connectDB();
 
 //MIDDLEWARE
+app.use(cors());
 app.use(express.json());
 app.use('/api/drinks', require('./routes/drinks'));
 app.use('/api/food', require('./routes/food'));

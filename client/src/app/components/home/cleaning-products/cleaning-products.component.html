@@ -1,0 +1,32 @@
+<div class="container mt-1" style="margin-top: 150px;">
+    <div class="card">
+      <div class="card-body">
+        <span class="h3 text-center">List of cleaning products</span>
+        <button class=" btn btn-dark btn-lg float-end" [routerLink]="['/addCleaningProducts']" routerLinkActive="router-link-active" >Add a new product</button>
+        <h5 style="margin-top: 30px;"*ngIf="listProducts.length==0"  >No data to show</h5>
+        <table  class="table mt-5 table-striped table-hove">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Type</th>
+              <th>Stock</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of listProducts">
+              <td>{{product.productName}}</td>
+              <td>{{product.type}}</td>
+              <td>{{product.stock}}</td>
+              <td>{{product.price | currency: 'EUR'}}</td>
+              <td><i class="fas fa-edit text-info me-3" 
+                   title="Edit" [routerLink]="['/editCleaningProduct/',product._id]"></i>
+                   <i class="fas fa-trash-alt text-danger" (click)="deleteProduct(product._id)" title="Delete"></i></td>
+            </tr> 
+            <!--[routerLink]="['/editEmpleado/',editEmpleado.id]"-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
